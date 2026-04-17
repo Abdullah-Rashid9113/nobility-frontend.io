@@ -13,7 +13,7 @@ include('partials/head.php');
 
             <!-- Logo icon -->
             <div class="logo-box d-flex align-items-center justify-content-center mx-auto mb-1">
-                <img src="<?php echo $page_url; ?>/assets/images/logo.svg" alt="Nobility Logo" class="w-10">
+                <img src="<?php echo $page_url; ?>/assets/images/logo.svg" alt="Nobility Logo" class="w-100">
             </div>
 
             <!-- Headline -->
@@ -23,7 +23,7 @@ include('partials/head.php');
 
             <!-- Tagline -->
             <p class="mt-2 mb-4" style="font-weight: 400 !important;">
-                Empowering administrators with smart control and insights.
+                Empowering administrators with smart control and insights.usdyausadtyugajsdgu
             </p>
 
             <!-- CTA button -->
