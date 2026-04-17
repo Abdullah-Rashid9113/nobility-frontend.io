@@ -13,7 +13,7 @@ include('partials/head.php');
 
             <!-- Logo icon -->
             <div class="logo-box d-flex align-items-center justify-content-center mx-auto mb-1">
-                <img src="<?php echo $page_url; ?>/assets/images/logo.svg" alt="Nobility Logo" class="w-100">
+                <img src="<?php echo $page_url; ?>/assets/images/logo.svg" alt="Nobility Logo" class="w-10">
             </div>
 
             <!-- Headline -->
