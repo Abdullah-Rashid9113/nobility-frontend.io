@@ -8,5 +8,5 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 $page_url = $is_https
     ? "https://nobility-frontend.apexcoders.co.uk"
-    : "http://localhost/nobility";
+    : "http://localhost/nobility-frontend";
 ?>
