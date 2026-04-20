@@ -10,4 +10,3 @@ $page_url = $is_https
     ? "https://nobility-frontend.apexcoders.co.uk"
     : "http://localhost/nobility";
 ?>
-

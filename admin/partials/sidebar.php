@@ -24,11 +24,7 @@
             <i class="bi bi-person-rolodex"></i>
             <span>Vendor Management</span>
         </a>
-<<<<<<< HEAD
         <a class="nav-item-link <?php echo ($currentPage == 'master-catalog') ? 'active' : ''; ?>" href="<?php echo $page_url; ?>/admin/master-catalog">
-=======
-        <a class="nav-item-link">
->>>>>>> 6462eaca1702b3f13990246871d14343bce2fec3
             <i class="bi bi-file-earmark-richtext"></i>
             <span>Master Catalog</span>
         </a>
@@ -36,19 +32,11 @@
             <i class="bi bi-shop"></i>
             <span>View Shops</span>
         </a>
-<<<<<<< HEAD
         <a class="nav-item-link <?php echo ($currentPage == 'commission-management') ? 'active' : ''; ?>" href="<?php echo $page_url; ?>/admin/commission-management">
            <i class="bi bi-percent"></i>
             <span>Commission Management</span>
         </a>
         <a class="nav-item-link <?php echo ($currentPage == 'payout-management') ? 'active' : ''; ?>" href="<?php echo $page_url; ?>/admin/payout-management">
-=======
-        <a class="nav-item-link">
-           <i class="bi bi-percent"></i>
-            <span>Commission Management</span>
-        </a>
-        <a class="nav-item-link">
->>>>>>> 6462eaca1702b3f13990246871d14343bce2fec3
             <i class="bi bi-cash-coin"></i>
             <span>Payout Management</span>
         </a>
