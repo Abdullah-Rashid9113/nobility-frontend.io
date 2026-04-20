@@ -23,7 +23,11 @@ include('partials/head.php');
 
             <!-- Tagline -->
             <p class="mt-2 mb-4" style="font-weight: 400 !important;">
+<<<<<<< HEAD
                 Empowering administrators with smart control and insights.
+=======
+                Empowering administrators with smart control and insights.usdyausadtyugajsdgu
+>>>>>>> 6462eaca1702b3f13990246871d14343bce2fec3
             </p>
 
             <!-- CTA button -->
