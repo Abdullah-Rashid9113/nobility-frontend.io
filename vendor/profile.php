@@ -17,46 +17,59 @@ include('partials/head.php');
         include('partials/header.php');
         ?>
 
-        <div id="page-content" class="profilePage">
+        <div id="page-content" class="profilePage EditUpdateProfile">
             <div class="dashboard-wrap">
                 <div id="view-profile" class="prof-section">
                     <h2 class="prof-heading">My Profile</h2>
 
-                    <div class="prof-avatar-wrap">
-                        <img src="https://i.pravatar.cc/200?img=47" alt="Profile" id="avatarImg" class="prof-avatar-img" />
-                    </div>
+                    <div class="addimg">
+                        <div class="editprofile1">
+                            <div class="prof-avatar-wrap">
+                                <img src="https://i.pravatar.cc/200?img=47" alt="Profile" id="avatarImg" class="prof-avatar-img" />
+                            </div>
 
-                    <div class="prof-info-list">
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">First Name:</span>
-                            <span class="prof-info-val" id="v-firstname">Tom</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Last Name:</span>
-                            <span class="prof-info-val" id="v-lastname">Albert</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Email Address:</span>
-                            <span class="prof-info-val" id="v-email">tomalbert@gmail.com</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Company Name:</span>
-                            <span class="prof-info-val" id="v-company">Silhouette Modesty</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Phone Number:</span>
-                            <span class="prof-info-val">
-                                <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" alt="UK" class="prof-flag" />
-                                <span id="v-phone">+44 456 39940</span>
-                            </span>
-                        </div>
-                    </div>
+                            <div class="prof-info-list">
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">First Name:</span>
+                                    <span class="prof-info-val" id="v-firstname">Tom</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Last Name:</span>
+                                    <span class="prof-info-val" id="v-lastname">Albert</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Email Address:</span>
+                                    <span class="prof-info-val" id="v-email">tomalbert@gmail.com</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Company Name:</span>
+                                    <span class="prof-info-val" id="v-company">Silhouette Modesty</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Phone Number:</span>
+                                    <span class="prof-info-val">
+                                        <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" alt="UK" class="prof-flag" />
+                                        <span id="v-phone">+44 456 39940</span>
+                                    </span>
+                                </div>
+                            </div>
 
-                    <div class="prof-btn-row">
-                        <button class="btn btn-primary" id="goEditBtn">Edit Profile</button>
-                        <button class="btn btn-outline btn-dark" id="goChangePwdBtn">Change Password</button>
+                            <div class="prof-btn-row">
+                                <button class="btn btn-primary" id="goEditBtn">Edit Profile</button>
+                                <button class="btn btn-outline btn-dark" id="goChangePwdBtn">Change Password</button>
+                            </div>
+                        </div>
+                        <!-- RIGHT: images show here after Update -->
+                        <div class="prof-right-col">
+                            <div id="prof-images-section">
+                                <div class="prof-images-grid">
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="Profile Img">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
 
 
                 <!-- ═══ VIEW 2: EDIT PROFILE ═══ -->
@@ -66,44 +79,66 @@ include('partials/head.php');
                         Edit Profile
                     </h2>
 
-                    <!-- Avatar with camera -->
-                    <div class="edit-avatar-wrap">
-                        <div class="edit-avatar-circle">
-                            <img src="https://i.pravatar.cc/200?img=47" alt="Profile" id="editAvatarImg" class="edit-avatar-img" />
-                            <button class="camera-btn" id="openImageModal" type="button">
-                                <i class="bi bi-camera-fill"></i>
-                            </button>
+                    <div class="addimg">
+                        <!-- Avatar with camera -->
+                        <div class="edit-avatar-wrap">
+                            <div class="edit-avatar-circle">
+                                <img src="https://i.pravatar.cc/200?img=47" alt="Profile" id="editAvatarImg" class="edit-avatar-img" />
+                                <button class="camera-btn" id="openImageModal" type="button">
+                                    <i class="bi bi-camera-fill"></i>
+                                </button>
+                            </div>
+
+                            <form action="">
+                                <div class="edit-form f form-container">
+                                    <div class="edit-field">
+                                        <label>First Name<span class="req">*</span></label>
+                                        <input type="text" id="e-firstname" class="form-control" placeholder="First Name" value="Tom" />
+                                    </div>
+                                    <div class="edit-field">
+                                        <label>Last Name<span class="req">*</span></label>
+                                        <input type="text" id="e-lastname" class="form-control" placeholder="Last Name" value="Albert" />
+                                    </div>
+                                    <div class="edit-field">
+                                        <label>Email Address<span class="req">*</span></label>
+                                        <input type="email" id="e-email" class="form-control" placeholder="Email Address" value="tomalbert@gmail.com" />
+                                    </div>
+                                    <div class="edit-field">
+                                        <label>Company Name<span class="req">*</span></label>
+                                        <input type="text" id="e-company" class="form-control" placeholder="Company Name" value="Silhouette Modesty" />
+                                    </div>
+                                    <div class="edit-field">
+                                        <label>Phone Number<span class="req">*</span></label>
+                                        <input type="tel" id="e-phone" class="form-control" placeholder="Phone number" />
+                                    </div>
+                                    <div id="editFormError" class="form-err" style="display:none"></div>
+                                    <div class="prof-btn-row">
+                                        <button class="btn btn-primary" id="saveEditBtn">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Right: image drop zone -->
+                        <div class="uploadimg">
+                            <div class="edit-field mb-0">
+                                <label>Add Images<span class="req">*</span></label>
+                                <div class="pm-dropzone" id="uploadDropzone">
+                                    <div class="pm-drop-inner">
+                                        <div class="pm-drop-icon">
+                                            <img src="<?php echo $page_url; ?>/assets/icons/upload.svg" alt="Upload Icon">
+                                        </div>
+                                        <label class="upload-label mt-1" for="uploadFileInput">
+                                            <i class="bi bi-upload" style="color: #C6238B; font-size: 1.2rem;"></i> Drop Your Files Here. Or <span>Browse</span>
+                                        </label>
+                                        <input type="file" id="uploadFileInput" multiple accept="image/*" style="display:none" />
+                                    </div>
+                                </div>
+                                <!-- Preview thumbnails -->
+                                <div class="pm-thumb-row" id="uploadThumbRow"></div>
+                            </div>
                         </div>
                     </div>
-
-                    <form action="">
-                        <div class="edit-form f form-container">
-                            <div class="edit-field">
-                                <label>First Name<span class="req">*</span></label>
-                                <input type="text" id="e-firstname" class="form-control" placeholder="First Name" value="Tom" />
-                            </div>
-                            <div class="edit-field">
-                                <label>Last Name<span class="req">*</span></label>
-                                <input type="text" id="e-lastname" class="form-control" placeholder="Last Name" value="Albert" />
-                            </div>
-                            <div class="edit-field">
-                                <label>Email Address<span class="req">*</span></label>
-                                <input type="email" id="e-email" class="form-control" placeholder="Email Address" value="tomalbert@gmail.com" />
-                            </div>
-                            <div class="edit-field">
-                                <label>Company Name<span class="req">*</span></label>
-                                <input type="text" id="e-company" class="form-control" placeholder="Company Name" value="Silhouette Modesty" />
-                            </div>
-                            <div class="edit-field">
-                                <label>Phone Number<span class="req">*</span></label>
-                                <input type="tel" id="e-phone" class="form-control" placeholder="Phone number" />
-                            </div>
-                            <div id="editFormError" class="form-err" style="display:none"></div>
-                            <div class="prof-btn-row">
-                                <button class="btn btn-primary" id="saveEditBtn">Update</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
 
 
@@ -404,6 +439,7 @@ include('partials/head.php');
             $('#successDoneBtn').on('click', function() {
                 $('#successModal').modal('hide');
             });
+
 
             /* ── Initialize intl-tel-input ── */
             function initIntlTelInput() {
