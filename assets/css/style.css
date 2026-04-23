@@ -4700,7 +4700,7 @@ body.dark-mode .commission-container {
 
 /* Edit And Update Profile */
 
-#view-edit .addimg {
+.EditUpdateProfile .addimg {
     display: flex !important;
     gap: 60px !important;
     align-items: center !important;
@@ -4710,11 +4710,13 @@ body.dark-mode .commission-container {
     width: 100% !important;
 }
 
-#view-edit .edit-avatar-wrap{
+.EditUpdateProfile .edit-avatar-wrap,
+.EditUpdateProfile .editprofile1{
     width: 60% !important; 
 }
 
-#view-edit .uploadimg{
+.EditUpdateProfile .uploadimg,
+.EditUpdateProfile .prof-right-col{
     width: 40% !important; 
 }
 
