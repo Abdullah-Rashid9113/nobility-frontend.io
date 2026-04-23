@@ -5,6 +5,47 @@ $description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
 include('partials/head.php');
 ?>
 
+<style>
+    /* ── Two-column layout for My Profile (same as Edit Profile) ── */
+    .prof-two-col {
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+    .prof-left-col {
+        flex: 1;
+    }
+    .prof-right-col {
+        flex: 1;
+    }
+
+    /* ── Images section on right ── */
+    .prof-images-section { }
+    .prof-images-heading { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
+    .prof-images-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .prof-images-grid img {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid #f0f0f0;
+    }
+
+    /* ── Thumbnails in dropzone ── */
+    .pm-thumb-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .pm-thumb-item { position: relative; }
+    .pm-thumb-img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 2px solid #f0f0f0; }
+    .pm-thumb-remove {
+        position: absolute; top: -6px; right: -6px;
+        width: 20px; height: 20px;
+        background: #e91e8c; color: #fff;
+        border: none; border-radius: 50%;
+        font-size: 13px; line-height: 1;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .pm-dropzone.drag-over { border-color: #e91e8c; background: #fff0fa; }
+</style>
+
 <body>
 
     <?php
@@ -19,42 +60,60 @@ include('partials/head.php');
 
         <div id="page-content" class="profilePage EditUpdateProfile">
             <div class="dashboard-wrap">
+
+                <!-- ═══ VIEW 1: MY PROFILE ═══ -->
                 <div id="view-profile" class="prof-section">
                     <h2 class="prof-heading">My Profile</h2>
 
-                    <div class="prof-avatar-wrap">
-                        <img src="https://i.pravatar.cc/200?img=47" alt="Profile" id="avatarImg" class="prof-avatar-img" />
-                    </div>
+                    <!-- ✅ Two column layout: left = info, right = images -->
+                    <div class="prof-two-col">
 
-                    <div class="prof-info-list">
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">First Name:</span>
-                            <span class="prof-info-val" id="v-firstname">Tom</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Last Name:</span>
-                            <span class="prof-info-val" id="v-lastname">Albert</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Email Address:</span>
-                            <span class="prof-info-val" id="v-email">tomalbert@gmail.com</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Company Name:</span>
-                            <span class="prof-info-val" id="v-company">Silhouette Modesty</span>
-                        </div>
-                        <div class="prof-info-row">
-                            <span class="prof-info-label">Phone Number:</span>
-                            <span class="prof-info-val">
-                                <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" alt="UK" class="prof-flag" />
-                                <span id="v-phone">+44 456 39940</span>
-                            </span>
-                        </div>
-                    </div>
+                        <!-- LEFT: avatar + info + buttons -->
+                        <div class="prof-left-col">
+                            <div class="prof-avatar-wrap">
+                                <img src="https://i.pravatar.cc/200?img=47" alt="Profile" id="avatarImg" class="prof-avatar-img" />
+                            </div>
 
-                    <div class="prof-btn-row">
-                        <button class="btn btn-primary" id="goEditBtn">Edit Profile</button>
-                        <button class="btn btn-outline btn-dark" id="goChangePwdBtn">Change Password</button>
+                            <div class="prof-info-list">
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">First Name:</span>
+                                    <span class="prof-info-val" id="v-firstname">Tom</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Last Name:</span>
+                                    <span class="prof-info-val" id="v-lastname">Albert</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Email Address:</span>
+                                    <span class="prof-info-val" id="v-email">tomalbert@gmail.com</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Company Name:</span>
+                                    <span class="prof-info-val" id="v-company">Silhouette Modesty</span>
+                                </div>
+                                <div class="prof-info-row">
+                                    <span class="prof-info-label">Phone Number:</span>
+                                    <span class="prof-info-val">
+                                        <img src="https://flagcdn.com/w20/gb.png" srcset="https://flagcdn.com/w40/gb.png 2x" alt="UK" class="prof-flag" />
+                                        <span id="v-phone">+44 456 39940</span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="prof-btn-row">
+                                <button class="btn btn-primary" id="goEditBtn">Edit Profile</button>
+                                <button class="btn btn-outline btn-dark" id="goChangePwdBtn">Change Password</button>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT: uploaded images (hidden until Update is clicked) -->
+                        <div class="prof-right-col">
+                            <div id="prof-images-section" class="prof-images-section" style="display:none">
+                                <h4 class="prof-images-heading">Add Images</h4>
+                                <div class="prof-images-grid" id="profImagesGrid"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -67,7 +126,7 @@ include('partials/head.php');
                     </h2>
 
                     <div class="addimg">
-                        <!-- Avatar with camera -->
+                        <!-- LEFT: avatar + form -->
                         <div class="edit-avatar-wrap">
                             <div class="edit-avatar-circle">
                                 <img src="https://i.pravatar.cc/200?img=47" alt="Profile" id="editAvatarImg" class="edit-avatar-img" />
@@ -106,7 +165,7 @@ include('partials/head.php');
                             </form>
                         </div>
 
-                        <!-- Right: image drop zone -->
+                        <!-- RIGHT: image drop zone -->
                         <div class="uploadimg">
                             <div class="edit-field mb-0">
                                 <label>Add Images<span class="req">*</span></label>
@@ -171,22 +230,18 @@ include('partials/head.php');
                 <!-- ═══ IMAGE UPLOAD MODAL ═══ -->
                 <div class="img-modal-overlay" id="imgModalOverlay" style="display:none">
                     <div class="img-modal-box">
-                        <!-- Preview circle -->
                         <div class="img-preview-wrap">
                             <div class="img-preview-circle">
                                 <img id="imgPreview" src="https://i.pravatar.cc/200?img=47" alt="Preview" />
                             </div>
                         </div>
-                        <!-- Upload trigger -->
                         <label class="upload-label" for="avatarFileInput">
                             <i class="bi bi-arrow-up-circle-fill"></i> Upload Image
                         </label>
                         <input type="file" id="avatarFileInput" accept="image/*" style="display:none" />
-                        <!-- Zoom slider -->
                         <div class="zoom-wrap">
                             <input type="range" id="zoomSlider" min="1" max="2" step="0.01" value="1" class="zoom-slider" />
                         </div>
-                        <!-- Update button -->
                         <button class="btn btn-primary w-100" id="applyImageBtn">Update</button>
                     </div>
                 </div>
@@ -213,45 +268,32 @@ include('partials/head.php');
     include('partials/scripts.php');
     ?>
 
-
     <script>
         $(function() {
-            // Global variable for the intl-tel-input instance
-            let itiPhone;
 
-            /* Helper: normalize phone number (remove non-digit except leading '+') */
+            let itiPhone;
+            let _uploadedImgSrcs = [];
+
             function normalizePhoneNumber(phone) {
                 if (!phone) return '';
-                // Remove all characters except digits and '+'
                 return phone.replace(/[^\d+]/g, '');
             }
 
-            /* ── View switcher helpers ── */
             function showView(id) {
                 $('#view-profile, #view-edit, #view-change-pwd').hide();
                 $(id).show();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
             /* ── Navigation ── */
             $('#goEditBtn').on('click', function() {
-                // Sync edit fields from current displayed values
                 $('#e-firstname').val($('#v-firstname').text());
                 $('#e-lastname').val($('#v-lastname').text());
                 $('#e-email').val($('#v-email').text());
                 $('#e-company').val($('#v-company').text());
-
-                // Get the current phone number from view profile and set it in the widget
-                let currentPhone = $('#v-phone').text().trim();
                 if (itiPhone) {
-                    // Normalize the number (remove dashes, spaces) before setting
-                    let normalized = normalizePhoneNumber(currentPhone);
-                    itiPhone.setNumber(normalized);
+                    itiPhone.setNumber(normalizePhoneNumber($('#v-phone').text().trim()));
                 }
-
                 showView('#view-edit');
             });
 
@@ -277,28 +319,20 @@ include('partials/head.php');
                 let em = $.trim($('#e-email').val());
                 let co = $.trim($('#e-company').val());
 
-                // Get phone data from intl-tel-input
                 let fullPhoneNumber = '';
-                let countryCode = 'gb'; // fallback
+                let countryCode = 'gb';
                 let isValid = false;
 
                 if (itiPhone) {
                     isValid = itiPhone.isValidNumber();
                     if (isValid) {
-                        fullPhoneNumber = itiPhone.getNumber(); // E.164 format, e.g., "+441234567890"
-                        const countryData = itiPhone.getSelectedCountryData();
-                        countryCode = countryData.iso2;
+                        fullPhoneNumber = itiPhone.getNumber();
+                        countryCode = itiPhone.getSelectedCountryData().iso2;
                     } else {
-                        // Fallback: try to get the raw input value
                         let rawPhone = $.trim($('#e-phone').val());
-                        if (rawPhone) {
-                            fullPhoneNumber = rawPhone;
-                            // Attempt to guess country from raw number (optional)
-                            // For simplicity, we keep the existing country code
-                        }
+                        if (rawPhone) { fullPhoneNumber = rawPhone; }
                     }
                 } else {
-                    // Widget not initialized (should not happen), fallback to raw input
                     fullPhoneNumber = $.trim($('#e-phone').val());
                 }
 
@@ -308,29 +342,34 @@ include('partials/head.php');
                     $('#editFormError').text('Please fill in all required fields.').show();
                     return;
                 }
-
                 if (!isValid && itiPhone && !itiPhone.isValidNumber()) {
                     $('#editFormError').text('Please enter a valid phone number.').show();
                     return;
                 }
 
-                // Update profile view values
                 $('#v-firstname').text(fn);
                 $('#v-lastname').text(ln);
                 $('#v-email').text(em);
                 $('#v-company').text(co);
                 $('#v-phone').text(fullPhoneNumber);
 
-                // Update flag in view profile
                 const flagImg = $('#v-phone').closest('.prof-info-row').find('.prof-flag');
                 if (flagImg.length) {
                     flagImg.attr('src', `https://flagcdn.com/w20/${countryCode}.png`);
                     flagImg.attr('srcset', `https://flagcdn.com/w40/${countryCode}.png 2x`);
                 }
 
-                // Update avatars
-                let src = $('#editAvatarImg').attr('src');
-                $('#avatarImg').attr('src', src);
+                $('#avatarImg').attr('src', $('#editAvatarImg').attr('src'));
+
+                // ✅ Images RIGHT side pe show karo
+                if (_uploadedImgSrcs.length > 0) {
+                    let grid = $('#profImagesGrid');
+                    grid.empty();
+                    _uploadedImgSrcs.forEach(function(imgSrc) {
+                        grid.append($('<img>').attr('src', imgSrc));
+                    });
+                    $('#prof-images-section').show();
+                }
 
                 showView('#view-profile');
                 $('#successModal').modal('show');
@@ -339,7 +378,7 @@ include('partials/head.php');
             /* ── Save Change Password ── */
             $('#savePwdBtn').on('click', function() {
                 let cur = $.trim($('#cp-current').val());
-                let nw = $.trim($('#cp-new').val());
+                let nw  = $.trim($('#cp-new').val());
                 let cnf = $.trim($('#cp-confirm').val());
 
                 $('#pwdFormError').hide();
@@ -357,39 +396,35 @@ include('partials/head.php');
                     return;
                 }
 
-                // Reset fields
                 $('#cp-current, #cp-new, #cp-confirm').val('');
                 $('.eye-btn i').removeClass('bi-eye').addClass('bi-eye-slash');
                 $('.pwd-wrap input').attr('type', 'password');
-
                 showView('#view-profile');
                 $('#successModal').modal('show');
             });
 
             /* ── Password eye toggle ── */
             $(document).on('click', '.eye-btn', function() {
-                let id = $(this).data('target');
+                let id   = $(this).data('target');
                 let $inp = $('#' + id);
                 let isPass = $inp.attr('type') === 'password';
                 $inp.attr('type', isPass ? 'text' : 'password');
                 $(this).find('i').toggleClass('bi-eye-slash bi-eye');
             });
 
-            /* ── Image Upload Modal ── */
+            /* ── Profile Image Upload Modal ── */
             let _selectedFile = null;
 
             $('#openImageModal').on('click', function() {
                 $('#imgModalOverlay').fadeIn(200);
             });
 
-            // Close overlay on background click
             $('#imgModalOverlay').on('click', function(e) {
                 if ($(e.target).is('#imgModalOverlay')) {
                     $('#imgModalOverlay').fadeOut(200);
                 }
             });
 
-            // File chosen → show preview
             $('#avatarFileInput').on('change', function() {
                 let file = this.files[0];
                 if (!file) return;
@@ -402,17 +437,13 @@ include('partials/head.php');
                 reader.readAsDataURL(file);
             });
 
-            // Zoom slider
             $('#zoomSlider').on('input', function() {
                 let val = $(this).val();
                 $('#imgPreview').css('transform', 'scale(' + val + ')');
                 let pct = ((val - 1) / 1) * 100;
-                $(this).css('background',
-                    'linear-gradient(90deg, #e91e8c ' + pct + '%, #d0d3de ' + pct + '%)'
-                );
+                $(this).css('background', 'linear-gradient(90deg, #e91e8c ' + pct + '%, #d0d3de ' + pct + '%)');
             });
 
-            // Apply image
             $('#applyImageBtn').on('click', function() {
                 let src = $('#imgPreview').attr('src');
                 $('#editAvatarImg').attr('src', src);
@@ -422,19 +453,68 @@ include('partials/head.php');
                 $('#zoomSlider').val(1).trigger('input');
             });
 
-            /* ── Success modal done ── */
             $('#successDoneBtn').on('click', function() {
                 $('#successModal').modal('hide');
             });
 
-            /* ── Initialize intl-tel-input ── */
+            /* ── ✅ Dropzone: sirf JS se handle, label tag se conflict nahi ── */
+            $('#uploadDropzone').on('click', function(e) {
+                // Agar label ya input pe directly click ho toh double trigger nahi hoga
+                if ($(e.target).is('input[type="file"]')) return;
+                e.preventDefault();
+                $('#uploadFileInput').trigger('click');
+            });
+
+            $('#uploadDropzone').on('dragover', function(e) {
+                e.preventDefault();
+                $(this).addClass('drag-over');
+            });
+
+            $('#uploadDropzone').on('dragleave drop', function(e) {
+                e.preventDefault();
+                $(this).removeClass('drag-over');
+                if (e.type === 'drop') {
+                    handleUploadedFiles(e.originalEvent.dataTransfer.files);
+                }
+            });
+
+            /* ── ✅ File change event — reset value taake same file dobara pick ho sake ── */
+            $('#uploadFileInput').on('change', function() {
+                if (this.files && this.files.length > 0) {
+                    handleUploadedFiles(this.files);
+                }
+                $(this).val(''); // reset so same file can be re-selected
+            });
+
+            function handleUploadedFiles(files) {
+                if (!files || !files.length) return;
+                Array.from(files).forEach(function(file) {
+                    if (!file.type.startsWith('image/')) return;
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        let imgSrc = e.target.result;
+                        _uploadedImgSrcs.push(imgSrc);
+
+                        let thumb     = $('<img>').attr('src', imgSrc).addClass('pm-thumb-img');
+                        let removeBtn = $('<button type="button" class="pm-thumb-remove">×</button>');
+                        let wrap      = $('<div class="pm-thumb-item"></div>').append(thumb).append(removeBtn);
+
+                        removeBtn.on('click', function() {
+                            _uploadedImgSrcs = _uploadedImgSrcs.filter(function(s) { return s !== imgSrc; });
+                            wrap.remove();
+                        });
+
+                        $('#uploadThumbRow').append(wrap);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            /* ── intl-tel-input ── */
             function initIntlTelInput() {
                 const phoneInputElem = document.querySelector("#e-phone");
                 if (phoneInputElem && typeof window.intlTelInput === 'function') {
-                    // Destroy previous instance if exists
-                    if (itiPhone) {
-                        itiPhone.destroy();
-                    }
+                    if (itiPhone) { itiPhone.destroy(); }
                     itiPhone = window.intlTelInput(phoneInputElem, {
                         initialCountry: "gb",
                         separateDialCode: true,
